@@ -1,0 +1,77 @@
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block page_title %}
+    BLog List
+{% endblock page_title %}
+
+{% block content %}
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-9">
+
+                <div class="card text-center card-columns">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#"> List </a>
+                            </li>
+                        </ul>
+                    </div>
+
+
+                    <div class="card-body">
+
+                        {% for blog in blogs_list %}
+
+                            <div class="card" style="width: 55rem">
+
+
+                                <div class="card-body">
+                                    <img class="card-img-center" src="{{ blog.cover.url }}"
+                                         alt="image can't loaded!"
+                                         style="width:250px;height:270px;"
+                                    >
+                                    <h3 class="card-title">
+                                        {{ blog.title }}
+                                    </h3>
+                                    <p class="card-text">
+                                        {{ blog.description | truncatewords:20 }}
+                                    </p>
+                                    <a href="{{ blog.get_absolute_url }}" class="btn btn-primary">View more...</a>
+                                </div>
+                            </div>
+                            <br>
+                        {% endfor %}
+
+                        <p class="card-text">---------------------------------------</p>
+                        <p class="card-text">--------------------</p>
+                        <p class="card-text">------</p>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+            <div class="col-3">
+
+                <div class="card my-4">
+                    <h5 class="card-header">About us</h5>
+                    <div class="card-body">
+                        <p class="card-text">We love python and django. So we created a blog site to share our
+                            thoughts</p>
+                        <a href="#"
+                           class="btn btn-sm btn-danger">
+                            More...
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
